@@ -4,4 +4,4 @@ linters:
     config: './.eslintrc.js'
 files:
   ignore:
-    - 'serviceWorker.js'
+    - 'src/serviceWorker.js'
