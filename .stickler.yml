@@ -2,6 +2,6 @@
 linters:
   eslint:
     config: './.eslintrc.js'
-  files:
-    ignore:
-      - 'serviceWorker.js'
+files:
+  ignore:
+    - 'serviceWorker.js'
