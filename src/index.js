@@ -2,28 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './components/App';
+import store from './reducers/index';
 import * as serviceWorker from './serviceWorker';
 
-const state = [
-  {
-    id: Math.random(),
-    title: 'The count of Montecristo',
-    category: 'Action',
-  },
-  {
-    id: Math.random(),
-    title: 'Brave New World',
-    category: 'Sci-Fi',
-  },
-  {
-    id: Math.random(),
-    title: 'The Lion King',
-    category: 'Kids',
-  },
-];
-
 ReactDOM.render(
-  <Provider store={state}>
+  <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById('root'),
