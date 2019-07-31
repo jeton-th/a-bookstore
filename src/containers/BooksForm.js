@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import store from '../reducers/index';
 import { addBook } from '../actions/index';
 
 const BOOK_CATEGORIES = [
@@ -15,8 +15,9 @@ const BOOK_CATEGORIES = [
 
 class BooksForm extends React.Component {
   state = {
+    id: Math.random(),
     title: '',
-    category: '',
+    category: 'Action',
   };
 
   handleChange = (event) => {
@@ -32,10 +33,12 @@ class BooksForm extends React.Component {
   };
 
   handleSubmit = () => {
-    store.dispatch(addBook(this.state));
+    const { submitNewBook } = this.props;
+    submitNewBook(this.state);
     this.setState({
+      id: Math.random(),
       title: '',
-      category: '',
+      category: 'Action',
     });
   }
 
@@ -46,13 +49,7 @@ class BooksForm extends React.Component {
         <input onChange={this.handleChange} value={title} />
         <select onChange={this.handleChange} value={category}>
           {
-            BOOK_CATEGORIES.map(c => (
-              <option
-                key={c}
-              >
-                {c}
-              </option>
-            ))
+            BOOK_CATEGORIES.map(c => (<option key={c}>{c}</option>))
           }
         </select>
         <button type="button" onClick={this.handleSubmit}>Add</button>
@@ -61,8 +58,12 @@ class BooksForm extends React.Component {
   }
 }
 
+BooksForm.propTypes = {
+  submitNewBook: PropTypes.func.isRequired,
+};
+
 const mapDispatchToProps = dispatch => ({
-  addBook: () => (dispatch(addBook())),
+  submitNewBook: book => (dispatch(addBook(book))),
 });
 
 export default connect(null, mapDispatchToProps)(BooksForm);
