@@ -1,9 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Book from '../components/Book';
-import store from '../reducers/index';
 
-const BooksList = () => {
-  const { books } = store.getState();
+const BooksList = ({ books }) => {
   const allBooks = books.map(book => <Book key={book.id} book={book} />);
 
   return (
@@ -20,4 +20,10 @@ const BooksList = () => {
   );
 };
 
-export default BooksList;
+BooksList.propTypes = {
+  books: PropTypes.array.isRequired,
+};
+
+const mapStateToProps = state => ({ books: state.books });
+
+export default connect(mapStateToProps, null)(BooksList);
