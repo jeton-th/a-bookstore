@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { addBook } from '../redux/actions/index';
 import generateId from '../services/generateId';
 
-const BOOK_CATEGORIES = [
+export const BOOK_CATEGORIES = [
   'Action',
   'Biography',
   'History',
