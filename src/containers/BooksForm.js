@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addBook } from '../actions/index';
+import { addBook } from '../redux/actions/index';
+import generateId from '../services/generateId';
 
 const BOOK_CATEGORIES = [
   'Action',
@@ -15,7 +16,7 @@ const BOOK_CATEGORIES = [
 
 class BooksForm extends React.Component {
   state = {
-    id: Math.random(),
+    id: generateId(),
     title: '',
     category: 'Action',
   };
@@ -36,7 +37,7 @@ class BooksForm extends React.Component {
     const { submitNewBook } = this.props;
     submitNewBook(this.state);
     this.setState({
-      id: Math.random(),
+      id: generateId(),
       title: '',
       category: 'Action',
     });

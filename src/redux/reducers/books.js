@@ -26,7 +26,7 @@ export default (state = INITIAL_STATE, action) => {
         action.book,
       ];
     case 'REMOVE_BOOK':
-      return state.filter(({ id }) => id !== action.id);
+      return state.filter(({ id }) => id !== action.book.id);
     default:
       return state;
   }
