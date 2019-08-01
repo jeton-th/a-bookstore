@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addBook } from '../redux/actions/index';
+import { addBook } from '../redux/actions';
 import generateId from '../services/generateId';
 
 export const BOOK_CATEGORIES = [
