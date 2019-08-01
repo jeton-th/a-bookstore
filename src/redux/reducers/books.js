@@ -1,22 +1,24 @@
+import generateId from '../../services/generateId';
+
 const INITIAL_STATE = [
   {
-    id: Math.random(),
+    id: generateId(),
     title: 'The count of Montecristo',
     category: 'Action',
   },
   {
-    id: Math.random(),
+    id: generateId(),
     title: 'Brave New World',
     category: 'Sci-Fi',
   },
   {
-    id: Math.random(),
+    id: generateId(),
     title: 'The Lion King',
     category: 'Kids',
   },
 ];
 
-const createBooks = (state = INITIAL_STATE, action) => {
+export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'CREATE_BOOK':
       return [
@@ -24,13 +26,8 @@ const createBooks = (state = INITIAL_STATE, action) => {
         action.book,
       ];
     case 'REMOVE_BOOK':
-      return [
-        ...state.slice(0, state.indexOf(action.book)),
-        ...state.slice(state.indexOf(action.book) + 1),
-      ];
+      return state.filter(({ id }) => id !== action.id);
     default:
       return state;
   }
 };
-
-export default createBooks;

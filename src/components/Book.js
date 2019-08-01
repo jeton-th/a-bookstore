@@ -1,19 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Book = ({ book, clickHandler }) => (
+const Book = ({ book: { title, category, id } }) => (
   <tr>
-    <td>{book.id}</td>
-    <td>{book.title}</td>
-    <td>{book.category}</td>
-    <td>
-      <button
-        type="button"
-        onClick={() => clickHandler(book)}
-      >
-        Remove book
-      </button>
-    </td>
+    <td>{id}</td>
+    <td>{title}</td>
+    <td>{category}</td>
   </tr>
 );
 
