@@ -9,7 +9,7 @@ const Book = ({ book: { title, category, id }, clickHandler }) => (
     <td>
       <button
         type="button"
-        onClick={() => clickHandler({ title, category, id })}
+        onClick={() => clickHandler(id)}
       >
         Remove book
       </button>

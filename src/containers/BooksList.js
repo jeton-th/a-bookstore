@@ -7,16 +7,16 @@ import CategoryFilter from '../components/CategoryFilter';
 
 const BooksList = ({
   books,
-  removeABook,
-  filterBooks,
   category,
+  removeBook,
+  changeFilter,
 }) => {
-  const handleRemoveBook = (book) => {
-    removeABook(book);
+  const handleRemoveBook = (id) => {
+    removeBook(id);
   };
 
   const handleFilterChange = (filter) => {
-    filterBooks(filter);
+    changeFilter(filter);
   };
 
   const allBooks = books.map(book => (
@@ -47,8 +47,8 @@ const BooksList = ({
 BooksList.propTypes = {
   books: PropTypes.array.isRequired,
   category: PropTypes.string.isRequired,
-  removeABook: PropTypes.func.isRequired,
-  filterBooks: PropTypes.func.isRequired,
+  removeBook: PropTypes.func.isRequired,
+  changeFilter: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -56,9 +56,4 @@ const mapStateToProps = state => ({
   category: state.filter,
 });
 
-const mapDispatchToProps = dispatch => ({
-  removeABook: book => (dispatch(removeBook(book))),
-  filterBooks: filter => (dispatch(changeFilter(filter))),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(BooksList);
+export default connect(mapStateToProps, { removeBook, changeFilter })(BooksList);
