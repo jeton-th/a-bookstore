@@ -13,6 +13,44 @@ export const BOOK_CATEGORIES = [
   'Sci-Fi',
 ];
 
+const styles = {
+  width: 1200,
+  margin: '29px auto',
+  paddingTop: 29,
+  borderTop: '1px solid #ddd',
+  fontSize: 20,
+};
+
+const inputStyles = {
+  width: 664,
+  height: 45,
+  borderRadius: 4,
+  border: '1px solid #eee',
+  fontSize: 22,
+  marginTop: 29,
+  marginRight: 34,
+};
+
+const selectStyles = {
+  width: 285,
+  height: 45,
+  borderRadius: 4,
+  border: '1px solid #eee',
+  backgroundColor: '#fff',
+  fontSize: 16,
+};
+
+const buttonStyles = {
+  width: 184,
+  height: 45,
+  border: 'none',
+  borderRadius: 4,
+  color: '#fff',
+  backgroundColor: '#09f',
+  fontSize: 16,
+  marginLeft: 30,
+};
+
 class BooksForm extends React.Component {
   state = {
     title: '',
@@ -39,14 +77,32 @@ class BooksForm extends React.Component {
   render() {
     const { title, category } = this.state;
     return (
-      <form>
-        <input name="title" value={title} onChange={this.handleChange} />
-        <select name="category" value={category} onChange={this.handleChange}>
+      <form style={styles}>
+        ADD NEW BOOK
+        <br />
+        <input
+          name="title"
+          value={title}
+          style={inputStyles}
+          onChange={this.handleChange}
+        />
+        <select
+          name="category"
+          value={category}
+          style={selectStyles}
+          onChange={this.handleChange}
+        >
           {
             BOOK_CATEGORIES.map(c => (<option key={c}>{c}</option>))
           }
         </select>
-        <button type="button" onClick={this.handleSubmit}>Add</button>
+        <button
+          style={buttonStyles}
+          type="button"
+          onClick={this.handleSubmit}
+        >
+          ADD BOOK
+        </button>
       </form>
     );
   }

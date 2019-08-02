@@ -11,6 +11,13 @@ const BooksList = ({
   removeBook,
   changeFilter,
 }) => {
+  const styles = {
+    width: 1200,
+    margin: 'auto',
+    fontSize: 22,
+    borderSpacing: '0 15px',
+  };
+
   const handleRemoveBook = (id) => {
     removeBook(id);
   };
@@ -26,9 +33,9 @@ const BooksList = ({
   return (
     <div>
       <CategoryFilter filterHandler={handleFilterChange} />
-      <table>
+      <table style={styles} cellSpacing="0">
         <tbody>
-          <tr>
+          <tr style={{ height: 85, color: '#09f' }}>
             <th>Book ID</th>
             <th>Title</th>
             <th>Category</th>
