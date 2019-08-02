@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addBook } from '../redux/actions/index';
-import generateId from '../services/generateId';
+import { addBook } from '../redux/actions';
 
 const BOOK_CATEGORIES = [
   'Action',
@@ -16,28 +15,22 @@ const BOOK_CATEGORIES = [
 
 class BooksForm extends React.Component {
   state = {
-    id: generateId(),
     title: '',
     category: 'Action',
   };
 
-  handleChange = (event) => {
-    if (event.target.nodeName === 'INPUT') {
-      this.setState({
-        title: event.target.value,
-      });
-    } else {
-      this.setState({
-        category: event.target.value,
-      });
-    }
-  };
-
-  handleSubmit = () => {
-    const { submitNewBook } = this.props;
-    submitNewBook(this.state);
+  handleChange = (e) => {
     this.setState({
-      id: generateId(),
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { addBook } = this.props;
+    const { title, category } = this.state;
+    addBook({ title, category });
+    this.setState({
       title: '',
       category: 'Action',
     });
@@ -47,8 +40,8 @@ class BooksForm extends React.Component {
     const { title, category } = this.state;
     return (
       <form>
-        <input onChange={this.handleChange} value={title} />
-        <select onChange={this.handleChange} value={category}>
+        <input name="title" value={title} onChange={this.handleChange} />
+        <select name="category" value={category} onChange={this.handleChange}>
           {
             BOOK_CATEGORIES.map(c => (<option key={c}>{c}</option>))
           }
@@ -60,11 +53,7 @@ class BooksForm extends React.Component {
 }
 
 BooksForm.propTypes = {
-  submitNewBook: PropTypes.func.isRequired,
+  addBook: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
-  submitNewBook: book => (dispatch(addBook(book))),
-});
-
-export default connect(null, mapDispatchToProps)(BooksForm);
+export default connect(null, { addBook })(BooksForm);
