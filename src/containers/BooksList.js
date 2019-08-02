@@ -63,4 +63,7 @@ const mapStateToProps = state => ({
   category: state.filter,
 });
 
-export default connect(mapStateToProps, { removeBook, changeFilter })(BooksList);
+export default connect(
+  mapStateToProps,
+  { removeBook, changeFilter },
+)(BooksList);
