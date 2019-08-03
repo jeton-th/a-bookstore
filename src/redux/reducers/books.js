@@ -23,7 +23,7 @@ export default (state = INITIAL_STATE, action) => {
     case 'CREATE_BOOK':
       return [
         ...state,
-        action.book,
+        { ...action.book, id: generateId() },
       ];
     case 'REMOVE_BOOK':
       return state.filter(({ id }) => id !== action.id);
