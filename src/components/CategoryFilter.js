@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BOOK_CATEGORIES } from '../containers/BooksForm';
+import { connect } from 'react-redux';
+import { changeFilter } from '../redux/actions/index';
+import BOOK_CATEGORIES from '../bookCategories';
 
 const styles = {
   width: 285,
@@ -15,10 +17,10 @@ const categories = BOOK_CATEGORIES.map(category => (
   <option key={category} value={category}>{category}</option>
 ));
 
-const CategoryFilter = ({ filterHandler }) => (
+const CategoryFilter = props => (
   <div style={{ textAlign: 'center', margin: '20px auto', fontSize: 16 }}>
     <span style={{ marginRight: 5 }}>Filter by category</span>
-    <select style={styles} onChange={e => filterHandler(e.target.value)}>
+    <select style={styles} onChange={e => props.changeFilter(e.target.value)}>
       <option value="All">All</option>
       {categories}
     </select>
@@ -26,7 +28,7 @@ const CategoryFilter = ({ filterHandler }) => (
 );
 
 CategoryFilter.propTypes = {
-  filterHandler: PropTypes.func.isRequired,
+  changeFilter: PropTypes.func.isRequired,
 };
 
-export default CategoryFilter;
+export default connect(null, { changeFilter })(CategoryFilter);

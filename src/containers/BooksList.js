@@ -7,7 +7,6 @@ import CategoryFilter from '../components/CategoryFilter';
 
 const BooksList = ({
   books,
-  category,
   removeBook,
   changeFilter,
 }) => {
@@ -22,17 +21,9 @@ const BooksList = ({
     removeBook(id);
   };
 
-  const handleFilterChange = (filter) => {
-    changeFilter(filter);
-  };
-
-  const allBooks = books.map(book => (
-    <Book key={book.id} book={book} clickHandler={handleRemoveBook} />
-  ));
-
   return (
     <div>
-      <CategoryFilter filterHandler={handleFilterChange} />
+      <CategoryFilter filterHandler={changeFilter} />
       <table style={styles} cellSpacing="0">
         <tbody>
           <tr style={{ height: 85, color: '#09f' }}>
@@ -41,9 +32,13 @@ const BooksList = ({
             <th>Category</th>
           </tr>
           {
-            category !== 'All'
-              ? allBooks.filter(book => book.props.book.category === category)
-              : allBooks
+            books.map(book => (
+              <Book
+                key={book.id}
+                book={book}
+                clickHandler={handleRemoveBook}
+              />
+            ))
           }
         </tbody>
       </table>
@@ -53,14 +48,14 @@ const BooksList = ({
 
 BooksList.propTypes = {
   books: PropTypes.array.isRequired,
-  category: PropTypes.string.isRequired,
   removeBook: PropTypes.func.isRequired,
   changeFilter: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  books: state.books,
-  category: state.filter,
+  books: state.books.filter(book => (
+    state.filter === 'All' ? true : book.category === state.filter
+  )),
 });
 
 export default connect(
