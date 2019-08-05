@@ -2,16 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addBook } from '../redux/actions';
-
-export const BOOK_CATEGORIES = [
-  'Action',
-  'Biography',
-  'History',
-  'Horror',
-  'Kids',
-  'Learning',
-  'Sci-Fi',
-];
+import BOOK_CATEGORIES from '../bookCategories';
 
 class BooksForm extends React.Component {
   state = {
