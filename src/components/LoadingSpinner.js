@@ -1,8 +1,9 @@
 import React from 'react';
+import spinner from '../assets/spinner/spinner.gif';
 
 const LoadingSpinner = () => (
   <div style={{ textAlign: 'center' }}>
-    <img src="../assets/spinner/spinner.gif" alt="spinner" />
+    <img style={{ width: 100 }} src={spinner} alt="spinner" />
   </div>
 );
 

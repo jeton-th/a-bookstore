@@ -17,8 +17,8 @@ const addBook = book => (
       .then(res => res.json())
       .then((res) => {
         if (res.error) throw (res.error);
-        dispatch(fetchBooksSuccess(res.books));
-        return res.books;
+        dispatch(fetchBooksSuccess(res));
+        return res;
       })
       .catch((error) => {
         dispatch(fetchBooksError(error));

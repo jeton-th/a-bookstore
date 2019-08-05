@@ -26,10 +26,9 @@ class BooksList extends React.Component {
     removeBook(id);
   };
 
-  shouldComponentRender() {
+  shouldComponentRender = () => {
     const { pending } = this.props;
-    if (pending === false) return false;
-    return true;
+    return !pending;
   }
 
   render() {
@@ -38,6 +37,7 @@ class BooksList extends React.Component {
       error,
       changeFilter,
     } = this.props;
+
     if (!this.shouldComponentRender()) return <LoadingSpinner />;
 
     return (
@@ -84,9 +84,9 @@ BooksList.defaultProps = {
 
 const mapStateToProps = state => ({
   error: state.error,
-  books: state.books.books, // .filter(book => (
-  // state.filter === 'All' ? true : book.category === state.filter
-  // )),
+  books: state.books.books.filter(book => (
+    state.filter === 'All' ? true : book.category === state.filter
+  )),
   pending: state.pending,
 });
 

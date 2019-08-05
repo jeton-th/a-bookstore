@@ -4,7 +4,6 @@ import BooksList from '../containers/BooksList';
 
 const styles = {
   width: 1600,
-  height: 1434,
   backgroundColor: '#f5f6fa',
   margin: 'auto',
   paddingTop: 120,

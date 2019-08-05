@@ -4,7 +4,7 @@ import {
   fetchBooksError,
 } from './index';
 
-const fetchProducts = () => (
+const fetchBooks = () => (
   (dispatch) => {
     dispatch(fetchBooksPending());
     fetch('https://rails-bookstore-api.herokuapp.com/books')
@@ -20,4 +20,4 @@ const fetchProducts = () => (
   }
 );
 
-export default fetchProducts;
+export default fetchBooks;

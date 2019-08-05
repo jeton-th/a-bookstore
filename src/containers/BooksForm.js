@@ -20,6 +20,7 @@ const inputStyles = {
   fontSize: 22,
   marginTop: 29,
   marginRight: 34,
+  marginBottom: 34,
 };
 
 const selectStyles = {
