@@ -6,30 +6,23 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case 'FETCH_PRODUCTS_PENDING':
+    case 'FETCH_BOOKS_PENDING':
       return {
         ...state,
         pending: true,
       };
-    case 'FETCH_PRODUCTS_SUCCESS':
+    case 'FETCH_BOOKS_SUCCESS':
       return {
         ...state,
         pending: false,
-        books: action.payload,
+        books: action.books,
       };
-    case 'FETCH_PRODUCTS_ERROR':
+    case 'FETCH_BOOKS_ERROR':
       return {
         ...state,
         pending: false,
         error: action.error,
       };
-    // case 'CREATE_BOOK':
-    //   return [
-    //     ...state,
-    //     { ...action.book, id: generateId() },
-    //   ];
-    // case 'REMOVE_BOOK':
-    //   return state.filter(({ id }) => id !== action.id);
     default:
       return state;
   }

@@ -4,15 +4,17 @@ import {
   fetchBooksError,
 } from './index';
 
-const fetchProducts = () => (
+const removeBook = id => (
   (dispatch) => {
     dispatch(fetchBooksPending());
-    fetch('https://rails-bookstore-api.herokuapp.com/books')
+    fetch(`https://rails-bookstore-api.herokuapp.com/books/${id}`, {
+      method: 'DELETE',
+    })
       .then(res => res.json())
       .then((res) => {
         if (res.error) throw (res.error);
-        dispatch(fetchBooksSuccess(res));
-        return res;
+        dispatch(fetchBooksSuccess(res.books));
+        return res.books;
       })
       .catch((error) => {
         dispatch(fetchBooksError(error));
@@ -20,4 +22,4 @@ const fetchProducts = () => (
   }
 );
 
-export default fetchProducts;
+export default removeBook;
