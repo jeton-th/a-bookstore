@@ -10,7 +10,7 @@ const styles = {
 };
 
 const buttonStyles = {
-  padding: 10,
+  padding: '5px 10px',
   backgroundColor: '#09f',
   color: '#fff',
   border: 'none',
@@ -45,8 +45,28 @@ const Book = ({
       </button>
     </td>
 
-    <td>
-      64%
+    <td className="middleCol">
+      <svg className="circular-chart" viewBox="0 0 36 36">
+        <path
+          x="50%"
+          y="50%"
+          className="circle-shadow"
+          stroke="100"
+          d="M18 2.0845
+            a 15.9155 15.9155 0 0 1 0 31.831
+            a 15.9155 15.9155 0 0 1 0 -31.831"
+          />
+        <path
+          x="50%"
+          y="50%"
+          className="circle"
+          strokeDasharray="64, 100"
+          d="M18 2.0845
+            a 15.9155 15.9155 0 0 1 0 31.831
+            a 15.9155 15.9155 0 0 1 0 -31.831"
+        />
+      </svg>
+      <p>64% completed</p>
     </td>
 
     <td style={{ padding: '0 20px' }}>

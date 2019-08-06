@@ -2,8 +2,49 @@ h3, p {
   margin: 0.3em;
 }
 
+.circular-chart {
+  display: block;
+  margin: 10px auto;
+  width: 40%;
+  height: 60px;
+}
+
+.circle {
+  stroke: #09f;
+  fill: none;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  animation: progress 1s ease-out forwards;
+}
+
+.circle-shadow {
+  stroke: #ddd;
+  fill: none;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+.middleCol {
+  text-align: center;
+}
+
 @media screen and (max-width: 450px){
   button {
     font-size: 0.6em;
   }
+
+  .circular-chart {
+    width: 80%;
+  }
+
+  .middleCol {
+    font-size: 0.7em;
+  }
 }
+
