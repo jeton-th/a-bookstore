@@ -3,21 +3,19 @@ import BooksForm from '../containers/BooksForm';
 import BooksList from '../containers/BooksList';
 
 const styles = {
-  width: 1600,
-  height: 1434,
+  maxWidth: 1600,
   backgroundColor: '#f5f6fa',
   margin: 'auto',
-  paddingTop: 120,
+  paddingTop: 20,
   fontFamily: 'Arial',
 };
 
 const headerStyles = {
-  width: 1400,
-  height: 95,
+  maxWidth: 1400,
   backgroundColor: '#fff',
   color: '#09f',
   margin: 'auto',
-  padding: '29px 100px',
+  padding: 29,
   boxSizing: 'border-box',
   fontSize: 30,
 };
