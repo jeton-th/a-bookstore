@@ -19,7 +19,7 @@ chapters = chapters.map(num => (
 
 class ChapterSelector extends React.Component {
   state = {
-    chapter: null,
+    chapter: 1,
   }
 
   handleChange = (e) => {
