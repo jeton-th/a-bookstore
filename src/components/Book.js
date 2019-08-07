@@ -32,7 +32,7 @@ const Book = ({
   clickHandler,
 }) => (
   <tr style={styles}>
-    <td style={{ padding: 20 }}>
+    <td style={{ padding: 15 }}>
       <p>{category}</p>
       <h3>{title}</h3>
       <p>{author}</p>
@@ -69,7 +69,7 @@ const Book = ({
       <p>64% completed</p>
     </td>
 
-    <td style={{ padding: '0 20px' }}>
+    <td style={{ padding: '0 15px' }}>
       <p>Current chapter</p>
       <p>Chapter Nth</p>
       <button type="button" style={buttonStyles}>UPDATE PROGRESS</button>

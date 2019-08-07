@@ -14,13 +14,14 @@ const styles = {
 };
 
 const inputStyles = {
-  width: '50%',
+  width: '48%',
   height: 45,
   borderRadius: 4,
   border: '1px solid #eee',
   fontSize: 22,
-  marginTop: 29,
-  marginRight: '3%',
+  marginTop: 15,
+  marginRight: '1%',
+  marginBottom: '1%',
 };
 
 const selectStyles = {
@@ -40,12 +41,13 @@ const buttonStyles = {
   borderRadius: 4,
   color: '#fff',
   backgroundColor: '#09f',
-  fontSize: 16,
+  fontSize: 12,
 };
 
 class BooksForm extends React.Component {
   state = {
     title: '',
+    author: '',
     category: 'Action',
   };
 
@@ -58,16 +60,17 @@ class BooksForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { addBook } = this.props;
-    const { title, category } = this.state;
-    addBook({ title, category });
+    const { title, author, category } = this.state;
+    addBook({ title, author, category });
     this.setState({
       title: '',
+      author: '',
       category: 'Action',
     });
   }
 
   render() {
-    const { title, category } = this.state;
+    const { title, author, category } = this.state;
     return (
       <form style={styles}>
         ADD NEW BOOK
@@ -77,6 +80,13 @@ class BooksForm extends React.Component {
           value={title}
           style={inputStyles}
           placeholder="Book title"
+          onChange={this.handleChange}
+        />
+        <input
+          name="author"
+          value={author}
+          style={inputStyles}
+          placeholder="Book author"
           onChange={this.handleChange}
         />
         <select
