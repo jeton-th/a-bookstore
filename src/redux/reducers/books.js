@@ -4,16 +4,19 @@ const INITIAL_STATE = [
   {
     id: generateId(),
     title: 'The count of Montecristo',
+    author: 'Alexandre Dumas',
     category: 'Action',
   },
   {
     id: generateId(),
     title: 'Brave New World',
+    author: 'Aldous Huxley',
     category: 'Sci-Fi',
   },
   {
     id: generateId(),
     title: 'The Lion King',
+    author: 'Disney',
     category: 'Kids',
   },
 ];

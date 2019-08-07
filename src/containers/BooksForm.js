@@ -3,6 +3,45 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addBook } from '../redux/actions';
 import BOOK_CATEGORIES from '../bookCategories';
+import '../css/booksForm.css';
+
+const styles = {
+  maxWidth: 1200,
+  margin: '29px auto',
+  padding: 20,
+  borderTop: '1px solid #ddd',
+  fontSize: 20,
+};
+
+const inputStyles = {
+  width: '50%',
+  height: 45,
+  borderRadius: 4,
+  border: '1px solid #eee',
+  fontSize: 22,
+  marginTop: 29,
+  marginRight: '3%',
+};
+
+const selectStyles = {
+  width: '30%',
+  height: 45,
+  borderRadius: 4,
+  border: '1px solid #eee',
+  backgroundColor: '#fff',
+  fontSize: 16,
+  marginRight: '3%',
+};
+
+const buttonStyles = {
+  width: '10%',
+  height: 45,
+  border: 'none',
+  borderRadius: 4,
+  color: '#fff',
+  backgroundColor: '#09f',
+  fontSize: 16,
+};
 
 class BooksForm extends React.Component {
   state = {
@@ -30,14 +69,33 @@ class BooksForm extends React.Component {
   render() {
     const { title, category } = this.state;
     return (
-      <form>
-        <input name="title" value={title} onChange={this.handleChange} />
-        <select name="category" value={category} onChange={this.handleChange}>
+      <form style={styles}>
+        ADD NEW BOOK
+        <br />
+        <input
+          name="title"
+          value={title}
+          style={inputStyles}
+          placeholder="Book title"
+          onChange={this.handleChange}
+        />
+        <select
+          name="category"
+          value={category}
+          style={selectStyles}
+          onChange={this.handleChange}
+        >
           {
             BOOK_CATEGORIES.map(c => (<option key={c}>{c}</option>))
           }
         </select>
-        <button type="button" onClick={this.handleSubmit}>Add</button>
+        <button
+          style={buttonStyles}
+          type="button"
+          onClick={this.handleSubmit}
+        >
+          ADD BOOK
+        </button>
       </form>
     );
   }

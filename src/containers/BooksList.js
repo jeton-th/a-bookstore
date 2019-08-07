@@ -10,6 +10,11 @@ const BooksList = ({
   removeBook,
   changeFilter,
 }) => {
+  const styles = {
+    width: '100%',
+    borderSpacing: '0 15px',
+  };
+
   const handleRemoveBook = (id) => {
     removeBook(id);
   };
@@ -17,24 +22,21 @@ const BooksList = ({
   return (
     <div>
       <CategoryFilter filterHandler={changeFilter} />
-      <table>
-        <tbody>
-          <tr>
-            <th>Book ID</th>
-            <th>Title</th>
-            <th>Category</th>
-          </tr>
-          {
-            books.map(book => (
-              <Book
-                key={book.id}
-                book={book}
-                clickHandler={handleRemoveBook}
-              />
-            ))
-          }
-        </tbody>
-      </table>
+      <div style={{ margin: 'auto', maxWidth: 1200, overflowX: 'auto' }}>
+        <table style={styles} cellSpacing="0">
+          <tbody>
+            {
+              books.map(book => (
+                <Book
+                  key={book.id}
+                  book={book}
+                  clickHandler={handleRemoveBook}
+                />
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
