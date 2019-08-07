@@ -18,71 +18,55 @@ const removeButton = {
   color: '#09f',
 };
 
-class Book extends React.Component {
-  state = {
-    progress: 0,
-  }
+const Book = ({
+  book: {
+    title, author, category, id, progress, chapter,
+  },
+  clickHandler,
+}) => (
+  <tr style={styles}>
+    <td style={{ padding: 15 }}>
+      <p>{category}</p>
+      <h3>{title}</h3>
+      <p>{author}</p>
+      <button
+        type="button"
+        style={removeButton}
+        onClick={() => clickHandler(id)}
+      >
+        Remove book
+      </button>
+    </td>
 
-  updateProgress = (chapter) => {
-    this.setState({ progress: chapter * 5 });
-  };
+    <td className="middleCol">
+      <svg className="circular-chart" viewBox="0 0 36 36">
+        <path
+          x="50%"
+          y="50%"
+          className="circle-shadow"
+          stroke="100"
+          d="M18 2.0845
+            a 15.9155 15.9155 0 0 1 0 31.831
+            a 15.9155 15.9155 0 0 1 0 -31.831"
+        />
+        <path
+          x="50%"
+          y="50%"
+          className="circle"
+          strokeDasharray={`${progress}, 100`}
+          d="M18 2.0845
+            a 15.9155 15.9155 0 0 1 0 31.831
+            a 15.9155 15.9155 0 0 1 0 -31.831"
+        />
+      </svg>
+      <p>{`${progress}% completed`}</p>
+    </td>
 
-  render() {
-    const {
-      book: {
-        title, author, category, id,
-      },
-      clickHandler,
-    } = this.props;
-
-    const { progress } = this.state;
-
-    return (
-      <tr style={styles}>
-        <td style={{ padding: 15 }}>
-          <p>{category}</p>
-          <h3>{title}</h3>
-          <p>{author}</p>
-          <button
-            type="button"
-            style={removeButton}
-            onClick={() => clickHandler(id)}
-          >
-            Remove book
-          </button>
-        </td>
-
-        <td className="middleCol">
-          <svg className="circular-chart" viewBox="0 0 36 36">
-            <path
-              x="50%"
-              y="50%"
-              className="circle-shadow"
-              stroke="100"
-              d="M18 2.0845
-                a 15.9155 15.9155 0 0 1 0 31.831
-                a 15.9155 15.9155 0 0 1 0 -31.831"
-            />
-            <path
-              x="50%"
-              y="50%"
-              className="circle"
-              strokeDasharray={`${progress}, 100`}
-              d="M18 2.0845
-                a 15.9155 15.9155 0 0 1 0 31.831
-                a 15.9155 15.9155 0 0 1 0 -31.831"
-            />
-          </svg>
-          <p>{`${progress}% completed`}</p>
-        </td>
-
-        <td style={{ padding: '0 15px' }}>
-          <ChapterSelector updateHandler={this.updateProgress} />
-        </td>
-      </tr>
-    );
-  }
-}
+    <td style={{ padding: '0 15px' }}>
+      <ChapterSelector currentChapter={chapter} id={id} />
+    </td>
+  </tr>
+);
 
 Book.propTypes = {
   book: PropTypes.object.isRequired,
