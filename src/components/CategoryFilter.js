@@ -6,7 +6,7 @@ import BOOK_CATEGORIES from '../bookCategories';
 
 const styles = {
   width: 285,
-  height: 45,
+  height: 35,
   borderRadius: 4,
   border: '1px solid #eee',
   backgroundColor: '#fff',

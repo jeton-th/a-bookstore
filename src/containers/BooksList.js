@@ -9,9 +9,7 @@ import CategoryFilter from '../components/CategoryFilter';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 const styles = {
-  width: 1200,
-  margin: 'auto',
-  fontSize: 22,
+  width: '100%',
   borderSpacing: '0 15px',
 };
 
@@ -44,24 +42,26 @@ class BooksList extends React.Component {
       <div>
         <CategoryFilter filterHandler={changeFilter} />
         {error && <span style={{ color: 'red' }}>{error}</span>}
-        <table style={styles} cellSpacing="0">
-          <tbody>
-            <tr style={{ height: 85, color: '#09f' }}>
-              <th>Book ID</th>
-              <th>Title</th>
-              <th>Category</th>
-            </tr>
-            {
-              books.map(book => (
-                <Book
-                  key={book.id}
-                  book={book}
-                  clickHandler={this.handleRemoveBook}
-                />
-              ))
-            }
-          </tbody>
-        </table>
+        <div style={{ margin: 'auto', maxWidth: 1200, overflowX: 'auto' }}>
+          <table style={styles} cellSpacing="0">
+            <tbody>
+              <tr style={{ height: 85, color: '#09f' }}>
+                <th>Book ID</th>
+                <th>Title</th>
+                <th>Category</th>
+              </tr>
+              {
+                books.map(book => (
+                  <Book
+                    key={book.id}
+                    book={book}
+                    clickHandler={this.handleRemoveBook}
+                  />
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
