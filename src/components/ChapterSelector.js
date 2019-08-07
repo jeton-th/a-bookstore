@@ -3,6 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import updateBookProgress from '../redux/actions/updateBookProgress';
 
+const styles = {
+  backgroundColor: '#fff',
+  borderRadius: 4,
+  border: '1px solid #ddd',
+};
+
 const buttonStyles = {
   padding: '5px 10px',
   backgroundColor: '#09f',
@@ -45,8 +51,9 @@ class ChapterSelector extends React.Component {
     const { currentChapter } = this.props;
     return (
       <div style={{ textAlign: 'center' }}>
-        <p>Current chapter</p>
+        <p>CURRENT CHAPTER:</p>
         <select
+          style={styles}
           value={`Chapter ${chapter || currentChapter}`}
           onChange={this.handleChange}
         >
