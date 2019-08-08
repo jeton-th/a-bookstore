@@ -73,16 +73,16 @@ BooksList.propTypes = {
 
 BooksList.defaultProps = {
   error: null,
-  pending: false,
   books: [],
+  pending: false,
 };
 
 const mapStateToProps = state => ({
-  error: state.error,
+  error: state.books.error,
   books: state.books.books.filter(book => (
     state.filter === 'All' ? true : book.category === state.filter
   )),
-  pending: state.pending,
+  pending: state.books.pending,
 });
 
 export default connect(
