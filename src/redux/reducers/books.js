@@ -1,28 +1,19 @@
-const INITIAL_STATE = {
-  pending: false,
-  books: [],
-  error: null,
-};
-
-export default (state = INITIAL_STATE, action) => {
+export default (state = [], action) => {
   switch (action.type) {
-    case 'FETCH_BOOKS_PENDING':
-      return {
+    case 'FETCH_BOOKS':
+      return action.books;
+    case 'ADD_BOOK':
+      return [
         ...state,
-        pending: true,
-      };
-    case 'FETCH_BOOKS_SUCCESS':
-      return {
-        ...state,
-        pending: false,
-        books: action.books,
-      };
-    case 'FETCH_BOOKS_ERROR':
-      return {
-        ...state,
-        pending: false,
-        error: action.error,
-      };
+        action.book,
+      ];
+    case 'REMOVE_BOOK':
+      return state.filter(({ id }) => id !== action.id);
+    case 'UPDATE_BOOK_PROGRESS':
+      return state.map((book) => {
+        if (book.id === action.id) return action.book;
+        return book;
+      });
     default:
       return state;
   }

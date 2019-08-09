@@ -20,7 +20,7 @@ const removeButton = {
 
 const Book = ({
   book: {
-    title, author, category, id, progress, chapter,
+    id, title, author, category, chapter,
   },
   clickHandler,
 }) => (
@@ -53,13 +53,13 @@ const Book = ({
           x="50%"
           y="50%"
           className="circle"
-          strokeDasharray={`${progress}, 100`}
+          strokeDasharray={`${chapter * 5}, 100`}
           d="M18 2.0845
             a 15.9155 15.9155 0 0 1 0 31.831
             a 15.9155 15.9155 0 0 1 0 -31.831"
         />
       </svg>
-      <p>{`${progress}% completed`}</p>
+      <p>{`${chapter * 5}% completed`}</p>
     </td>
 
     <td style={{ padding: '0 15px' }}>

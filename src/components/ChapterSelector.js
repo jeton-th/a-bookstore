@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import updateBookProgress from '../redux/actions/updateBookProgress';
+import updateBookProgressInDatabase from
+  '../redux/thunks/updateBookProgressInDatabase';
 
 const styles = {
   backgroundColor: '#fff',
@@ -28,22 +29,17 @@ chapters = chapters.map(num => (
 class ChapterSelector extends React.Component {
   state = {
     chapter: null,
-    progress: 0,
   }
 
   handleUpdate = () => {
-    const { id, updateBookProgress } = this.props;
-    const { chapter, progress } = this.state;
-    updateBookProgress(id, { chapter, progress });
-    this.setState({ chapter: null, progress: 0 });
+    const { id, currentChapter, updateBookProgressInDatabase } = this.props;
+    const { chapter } = this.state;
+    updateBookProgressInDatabase(id, { chapter: chapter || currentChapter });
   };
 
   handleChange = (e) => {
-    const chapter = e.target.value.split(' ')[1];
-    this.setState({
-      chapter: +chapter,
-      progress: +chapter * 5,
-    });
+    const chapter = +e.target.value.split(' ')[1];
+    this.setState({ chapter });
   };
 
   render() {
@@ -75,7 +71,11 @@ class ChapterSelector extends React.Component {
 ChapterSelector.propTypes = {
   currentChapter: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
-  updateBookProgress: PropTypes.func.isRequired,
+  updateBookProgressInDatabase: PropTypes.func.isRequired,
 };
 
-export default connect(null, { updateBookProgress })(ChapterSelector);
+// ChapterSelector.defaultProps = {
+//   currentChapter: null,
+// };
+
+export default connect(null, { updateBookProgressInDatabase })(ChapterSelector);

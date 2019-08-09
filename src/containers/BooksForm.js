@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import addBook from '../redux/actions/addBook';
+import addBookToDatabase from '../redux/thunks/addBookToDatabase';
 import BOOK_CATEGORIES from '../bookCategories';
 import '../css/booksForm.css';
 
@@ -59,9 +59,9 @@ class BooksForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { addBook } = this.props;
+    const { addBookToDatabase } = this.props;
     const { title, author, category } = this.state;
-    addBook({ title, author, category });
+    addBookToDatabase({ title, author, category });
     this.setState({
       title: '',
       author: '',
@@ -112,7 +112,7 @@ class BooksForm extends React.Component {
 }
 
 BooksForm.propTypes = {
-  addBook: PropTypes.func.isRequired,
+  addBookToDatabase: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addBook })(BooksForm);
+export default connect(null, { addBookToDatabase })(BooksForm);
