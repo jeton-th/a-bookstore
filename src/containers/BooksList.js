@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import removeBookFromDatabase from '../redux/thunks/removeBookFromDatabase';
@@ -7,59 +7,50 @@ import Book from '../components/Book';
 import CategoryFilter from '../components/CategoryFilter';
 import LoadingSpinner from '../components/LoadingSpinner';
 
-class BooksList extends React.Component {
-  componentDidMount() {
-    const { fetchBooksFromDatabase } = this.props;
+const BooksList = ({
+  fetching,
+  error,
+  books,
+  fetchBooksFromDatabase,
+  removeBookFromDatabase,
+}) => {
+  useEffect(() => {
     fetchBooksFromDatabase();
-  }
+  }, [fetchBooksFromDatabase]);
 
-  handleRemoveBook = (id) => {
-    const { removeBookFromDatabase } = this.props;
+  const handleRemoveBook = (id) => {
     removeBookFromDatabase(id);
   };
 
-  shouldComponentRender = () => {
-    const { fetching } = this.props;
-    return !fetching;
-  }
+  const shouldComponentRender = () => !fetching;
 
-  render() {
-    const {
-      books,
-      error,
-    } = this.props;
+  if (!shouldComponentRender()) return <LoadingSpinner />;
 
-    if (!this.shouldComponentRender()) return <LoadingSpinner />;
-
-    return (
-      <div>
-        <CategoryFilter />
-        {
-          error && (
-            <p className="error">
-              {error}
-            </p>
-          )
-        }
-        <div className="table-container">
-          <table cellSpacing="0">
-            <tbody>
-              {
-                books.map(book => (
-                  <Book
-                    key={book.id}
-                    book={book}
-                    clickHandler={this.handleRemoveBook}
-                  />
-                ))
-              }
-            </tbody>
-          </table>
-        </div>
+  return (
+    <div>
+      <CategoryFilter />
+      {
+        error && <p className="error">{error}</p>
+      }
+      <div className="table-container">
+        <table cellSpacing="0">
+          <tbody>
+            {
+              books.map(book => (
+                <Book
+                  key={book.id}
+                  book={book}
+                  clickHandler={handleRemoveBook}
+                />
+              ))
+            }
+          </tbody>
+        </table>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
 
 BooksList.propTypes = {
   books: PropTypes.array,
