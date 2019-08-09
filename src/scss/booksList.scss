@@ -1,0 +1,15 @@
+table {
+  width: 100%;
+  border-spacing: 0 15px;
+}
+
+.table-container {
+  margin: auto;
+  max-width: 1200px;
+  overflow-x: auto;
+}
+
+.error {
+  color: #f00;
+  text-align: center;
+}

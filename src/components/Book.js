@@ -1,22 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ChapterSelector from './ChapterSelector';
-import '../css/book.css';
-
-const styles = {
-  height: 120,
-  borderRadius: 4,
-  border: '1px solid #eee',
-  backgroundColor: '#fff',
-};
-
-const removeButton = {
-  padding: '10px 5px',
-  background: 'none',
-  border: 'none',
-  cursor: 'pointer',
-  color: '#09f',
-};
 
 const Book = ({
   book: {
@@ -24,21 +8,21 @@ const Book = ({
   },
   clickHandler,
 }) => (
-  <tr style={styles}>
-    <td style={{ padding: 15 }}>
+  <tr>
+    <td>
       <p>{category}</p>
       <h3>{title}</h3>
       <p>{author}</p>
       <button
         type="button"
-        style={removeButton}
+        className="remove-button"
         onClick={() => clickHandler(id)}
       >
         Remove book
       </button>
     </td>
 
-    <td className="middleCol">
+    <td>
       <svg className="circular-chart" viewBox="0 0 36 36">
         <path
           x="50%"
@@ -62,7 +46,7 @@ const Book = ({
       <p>{`${chapter * 5}% completed`}</p>
     </td>
 
-    <td style={{ padding: '0 15px' }}>
+    <td>
       <ChapterSelector currentChapter={chapter} id={id} />
     </td>
   </tr>

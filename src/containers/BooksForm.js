@@ -3,46 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import addBookToDatabase from '../redux/thunks/addBookToDatabase';
 import BOOK_CATEGORIES from '../bookCategories';
-import '../css/booksForm.css';
-
-const styles = {
-  maxWidth: 1200,
-  margin: '29px auto',
-  padding: 20,
-  borderTop: '1px solid #ddd',
-  fontSize: 20,
-};
-
-const inputStyles = {
-  width: '48%',
-  height: 45,
-  borderRadius: 4,
-  border: '1px solid #eee',
-  fontSize: 22,
-  marginTop: 15,
-  marginRight: '1%',
-  marginBottom: '1%',
-};
-
-const selectStyles = {
-  width: '30%',
-  height: 45,
-  borderRadius: 4,
-  border: '1px solid #eee',
-  backgroundColor: '#fff',
-  fontSize: 16,
-  marginRight: '3%',
-};
-
-const buttonStyles = {
-  width: '10%',
-  height: 45,
-  border: 'none',
-  borderRadius: 4,
-  color: '#fff',
-  backgroundColor: '#09f',
-  fontSize: 12,
-};
 
 class BooksForm extends React.Component {
   state = {
@@ -72,27 +32,27 @@ class BooksForm extends React.Component {
   render() {
     const { title, author, category } = this.state;
     return (
-      <form style={styles}>
+      <form className="add-book">
         ADD NEW BOOK
         <br />
         <input
           name="title"
           value={title}
-          style={inputStyles}
+          className="text-input"
           placeholder="Book title"
           onChange={this.handleChange}
         />
         <input
           name="author"
           value={author}
-          style={inputStyles}
+          className="text-input"
           placeholder="Book author"
           onChange={this.handleChange}
         />
         <select
           name="category"
           value={category}
-          style={selectStyles}
+          className="select-category"
           onChange={this.handleChange}
         >
           {
@@ -100,7 +60,7 @@ class BooksForm extends React.Component {
           }
         </select>
         <button
-          style={buttonStyles}
+          className="button"
           type="button"
           onClick={this.handleSubmit}
         >

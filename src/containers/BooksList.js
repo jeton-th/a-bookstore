@@ -7,11 +7,6 @@ import Book from '../components/Book';
 import CategoryFilter from '../components/CategoryFilter';
 import LoadingSpinner from '../components/LoadingSpinner';
 
-const styles = {
-  width: '100%',
-  borderSpacing: '0 15px',
-};
-
 class BooksList extends React.Component {
   componentDidMount() {
     const { fetchBooksFromDatabase } = this.props;
@@ -41,13 +36,13 @@ class BooksList extends React.Component {
         <CategoryFilter />
         {
           error && (
-            <p style={{ color: 'red', textAlign: 'center' }}>
+            <p className="error">
               {error}
             </p>
           )
         }
-        <div style={{ margin: 'auto', maxWidth: 1200, overflowX: 'auto' }}>
-          <table style={styles} cellSpacing="0">
+        <div className="table-container">
+          <table cellSpacing="0">
             <tbody>
               {
                 books.map(book => (

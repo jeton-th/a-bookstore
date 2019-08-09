@@ -4,22 +4,6 @@ import PropTypes from 'prop-types';
 import updateBookProgressInDatabase from
   '../redux/thunks/updateBookProgressInDatabase';
 
-const styles = {
-  backgroundColor: '#fff',
-  borderRadius: 4,
-  border: '1px solid #ddd',
-};
-
-const buttonStyles = {
-  padding: '5px 10px',
-  backgroundColor: '#09f',
-  color: '#fff',
-  border: 'none',
-  borderRadius: 4,
-  marginTop: 10,
-  cursor: 'pointer',
-};
-
 let chapters = [...Array(20).keys()].map(x => x + 1);
 
 chapters = chapters.map(num => (
@@ -46,10 +30,10 @@ class ChapterSelector extends React.Component {
     const { chapter } = this.state;
     const { currentChapter } = this.props;
     return (
-      <div style={{ textAlign: 'center' }}>
+      <div className="selector-container">
         <p>CURRENT CHAPTER:</p>
         <select
-          style={styles}
+          className="chapter-select"
           value={`Chapter ${chapter || currentChapter}`}
           onChange={this.handleChange}
         >
@@ -58,7 +42,7 @@ class ChapterSelector extends React.Component {
         <br />
         <button
           type="button"
-          style={buttonStyles}
+          className="update-button"
           onClick={this.handleUpdate}
         >
           UPDATE PROGRESS
