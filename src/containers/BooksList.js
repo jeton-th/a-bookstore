@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import removeBookFromDatabase from '../redux/thunks/removeBookFromDatabase';
-import fetchBooksFromDatabase from '../redux/thunks/fetchBooksFromDatabase';
+import {
+  fetchBooksFromDatabase,
+  removeBookFromDatabase,
+} from '../redux/actions/thunks';
 import Book from '../components/Book';
 import CategoryFilter from '../components/CategoryFilter';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -17,10 +19,6 @@ const BooksList = ({
   useEffect(() => {
     fetchBooksFromDatabase();
   }, [fetchBooksFromDatabase]);
-
-  const handleRemoveBook = (id) => {
-    removeBookFromDatabase(id);
-  };
 
   const shouldComponentRender = () => !fetching;
 
@@ -40,7 +38,7 @@ const BooksList = ({
                 <Book
                   key={book.id}
                   book={book}
-                  clickHandler={handleRemoveBook}
+                  clickHandler={removeBookFromDatabase}
                 />
               ))
             }

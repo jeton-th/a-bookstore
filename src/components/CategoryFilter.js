@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import changeFilter from '../redux/actions/filter/changeFilter';
+import changeFilter from '../redux/actions/changeFilter';
 import BOOK_CATEGORIES from '../bookCategories';
 
 const categories = BOOK_CATEGORIES.map(category => (
