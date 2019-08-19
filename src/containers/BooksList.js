@@ -7,6 +7,7 @@ import {
 } from '../redux/actions/thunks';
 import Book from '../components/Book';
 import CategoryFilter from '../components/CategoryFilter';
+import Pagination from '../components/Pagination';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 const BooksList = ({
@@ -20,9 +21,7 @@ const BooksList = ({
     fetchBooksFromDatabase();
   }, [fetchBooksFromDatabase]);
 
-  const shouldComponentRender = () => !fetching;
-
-  if (!shouldComponentRender()) return <LoadingSpinner />;
+  if (fetching) return <LoadingSpinner />;
 
   return (
     <div>
@@ -45,23 +44,25 @@ const BooksList = ({
           </tbody>
         </table>
       </div>
+      <Pagination
+        pageCount={books.length > 0 ? books[0].pageCount : 1}
+        clickHandler={fetchBooksFromDatabase}
+      />
     </div>
   );
 };
 
 
 BooksList.propTypes = {
-  books: PropTypes.array,
+  books: PropTypes.array.isRequired,
   fetchBooksFromDatabase: PropTypes.func.isRequired,
-  fetching: PropTypes.bool,
+  fetching: PropTypes.bool.isRequired,
   error: PropTypes.string,
   removeBookFromDatabase: PropTypes.func.isRequired,
 };
 
 BooksList.defaultProps = {
   error: null,
-  books: [],
-  fetching: false,
 };
 
 const mapStateToProps = state => ({

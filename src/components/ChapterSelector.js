@@ -3,10 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { updateBookProgressInDatabase } from '../redux/actions/thunks';
 
-let chapters = [...Array(20).keys()].map(x => x + 1);
-
-chapters = chapters.map(num => (
-  <option key={num}>{`Chapter ${num}`}</option>
+const chapters = [...Array(20).keys()].map(num => (
+  <option key={num + 1}>{`Chapter ${num + 1}`}</option>
 ));
 
 const ChapterSelector = ({
@@ -14,19 +12,14 @@ const ChapterSelector = ({
   currentChapter,
   updateBookProgressInDatabase,
 }) => {
-  const initialState = { chapter: null };
-
-  const [state, setState] = useState(initialState);
-
-  const { chapter } = state;
+  const [chapter, setChapter] = useState(null);
 
   const handleUpdate = () => {
     updateBookProgressInDatabase(id, { chapter: chapter || currentChapter });
   };
 
   const handleChange = (e) => {
-    const chapter = +e.target.value.split(' ')[1];
-    setState({ chapter });
+    setChapter(+e.target.value.split(' ')[1]);
   };
 
   return (

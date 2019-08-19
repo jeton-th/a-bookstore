@@ -5,28 +5,31 @@ import { addBookToDatabase } from '../redux/actions/thunks';
 import BOOK_CATEGORIES from '../bookCategories';
 
 const BooksForm = ({ addBookToDatabase }) => {
-  const initialState = {
-    title: '',
-    author: '',
-    category: 'Action',
-  };
-
-  const [state, setState] = useState(initialState);
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [category, setCategory] = useState('Action');
 
   const handleChange = (e) => {
-    const updatedValues = {
-      [e.target.name]: e.target.value,
-    };
-    setState(prevState => ({ ...prevState, ...updatedValues }));
+    switch (e.target.name) {
+      case 'title':
+        setTitle(e.target.value);
+        break;
+      case 'author':
+        setAuthor(e.target.value);
+        break;
+      default:
+        setCategory(e.target.value);
+        break;
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addBookToDatabase(state);
-    setState(initialState);
+    addBookToDatabase({ title, author, category });
+    setTitle('');
+    setAuthor('');
+    setCategory('Action');
   };
-
-  const { title, author, category } = state;
 
   return (
     <form className="add-book">

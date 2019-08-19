@@ -9,7 +9,7 @@ import {
 } from './books';
 
 export const fetchBooksFromDatabase = page => async (dispatch) => {
-  const path = page ? `/v1/books?page=${page}` : '/v1/books';
+  const path = page ? `/v1/books.json?page=${page}` : '/v1/books.json';
   dispatch(fetching(true));
   try {
     const res = await fetchData('get', path);
@@ -24,7 +24,7 @@ export const fetchBooksFromDatabase = page => async (dispatch) => {
 };
 
 export const addBookToDatabase = bookData => async (dispatch) => {
-  const path = '/v1/books';
+  const path = '/v1/books.json';
   try {
     const res = await fetchData('post', path, bookData);
     const book = res.data;

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ProgressBar from './ProgressBar';
 import ChapterSelector from './ChapterSelector';
 
 const Book = ({
@@ -23,27 +24,7 @@ const Book = ({
     </td>
 
     <td>
-      <svg className="circular-chart" viewBox="0 0 36 36">
-        <path
-          x="50%"
-          y="50%"
-          className="circle-shadow"
-          stroke="100"
-          d="M18 2.0845
-            a 15.9155 15.9155 0 0 1 0 31.831
-            a 15.9155 15.9155 0 0 1 0 -31.831"
-        />
-        <path
-          x="50%"
-          y="50%"
-          className="circle"
-          strokeDasharray={`${chapter * 5}, 100`}
-          d="M18 2.0845
-            a 15.9155 15.9155 0 0 1 0 31.831
-            a 15.9155 15.9155 0 0 1 0 -31.831"
-        />
-      </svg>
-      <p>{`${chapter * 5}% completed`}</p>
+      <ProgressBar chapter={chapter} />
     </td>
 
     <td>
