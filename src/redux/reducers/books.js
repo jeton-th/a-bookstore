@@ -4,8 +4,8 @@ export default (state = [], action) => {
       return action.books;
     case 'ADD_BOOK':
       return [
-        ...state,
         action.book,
+        ...state,
       ];
     case 'REMOVE_BOOK':
       return state.filter(({ id }) => id !== action.id);

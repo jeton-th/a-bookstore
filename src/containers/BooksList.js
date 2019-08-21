@@ -30,24 +30,31 @@ const BooksList = ({
         error && <p className="error">{error}</p>
       }
       <div className="table-container">
-        <table cellSpacing="0">
+        <table>
           <tbody>
             {
-              books.map(book => (
-                <Book
-                  key={book.id}
-                  book={book}
-                  clickHandler={removeBookFromDatabase}
-                />
-              ))
+              books
+                .filter(book => typeof book === 'object')
+                .map(book => (
+                  <Book
+                    key={book.id}
+                    book={book}
+                    clickHandler={removeBookFromDatabase}
+                  />
+                ))
             }
           </tbody>
         </table>
       </div>
-      <Pagination
-        pageCount={books.length > 0 ? books[0].pageCount : 1}
-        clickHandler={fetchBooksFromDatabase}
-      />
+      {
+        books.length > 0
+        && (
+          <Pagination
+            pageCount={books[books.length - 1]}
+            clickHandler={fetchBooksFromDatabase}
+          />
+        )
+      }
     </div>
   );
 };

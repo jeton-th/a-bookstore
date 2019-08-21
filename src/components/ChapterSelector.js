@@ -12,10 +12,10 @@ const ChapterSelector = ({
   currentChapter,
   updateBookProgressInDatabase,
 }) => {
-  const [chapter, setChapter] = useState(null);
+  const [chapter, setChapter] = useState(currentChapter);
 
   const handleUpdate = () => {
-    updateBookProgressInDatabase(id, { chapter: chapter || currentChapter });
+    updateBookProgressInDatabase(id, chapter);
   };
 
   const handleChange = (e) => {
@@ -27,7 +27,7 @@ const ChapterSelector = ({
       <p>CURRENT CHAPTER:</p>
       <select
         className="chapter-select"
-        value={`Chapter ${chapter || currentChapter}`}
+        value={`Chapter ${chapter}`}
         onChange={handleChange}
       >
         {chapters}

@@ -54,7 +54,7 @@ export const updateBookProgressInDatabase = (id, chapter) => (
   async (dispatch) => {
     const path = `/v1/books/${id}`;
     try {
-      const res = await fetchData('put', path, chapter);
+      const res = await fetchData('put', path, { chapter });
       const book = res.data;
       dispatch(updateBookProgress(id, book));
       return book;
