@@ -17,7 +17,7 @@ const BooksList = ({
   fetchBooksFromDatabase,
   removeBookFromDatabase,
 }) => {
-  const page = window.location.href.split('=')[1] || 1;
+  const page = +window.location.href.split('=')[1] || 1;
 
   useEffect(() => {
     fetchBooksFromDatabase(page);
