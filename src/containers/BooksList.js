@@ -30,9 +30,6 @@ const BooksList = ({
   return (
     <div>
       <CategoryFilter />
-      {
-        error && <p className="error">{error}</p>
-      }
       <div className="table-container">
         <table>
           <tbody>
@@ -60,6 +57,11 @@ const BooksList = ({
           />
         )
       }
+      <div className="error-div">
+        {
+          error && <p className="error">{error}</p>
+        }
+      </div>
       <BooksForm />
     </div>
   );
