@@ -1,9 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Pagination = ({ pageCount, clickHandler }) => {
-  const page = window.location.href.split('=')[1] || 1;
+const Pagination = ({ pageCount, clickHandler, history }) => {
+  const page = history.location.search.split('=')[1] || 1;
 
   const pages = [...Array(pageCount).keys()].map(num => (
     <Link
@@ -23,10 +23,7 @@ const Pagination = ({ pageCount, clickHandler }) => {
   return (
     <div className="page-container">
       <span>Page </span>
-      <Router>
-        <Redirect exact from="/" to={`/books?page=${page}`} />
-        {pages}
-      </Router>
+      {pages}
     </div>
   );
 };
@@ -34,6 +31,7 @@ const Pagination = ({ pageCount, clickHandler }) => {
 Pagination.propTypes = {
   pageCount: PropTypes.number.isRequired,
   clickHandler: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default Pagination;

@@ -6,6 +6,7 @@ import {
   removeBookFromDatabase,
 } from '../redux/actions/thunks';
 import Book from '../components/Book';
+import BooksForm from '../components/BooksForm';
 import CategoryFilter from '../components/CategoryFilter';
 import Pagination from '../components/Pagination';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -16,8 +17,9 @@ const BooksList = ({
   books,
   fetchBooksFromDatabase,
   removeBookFromDatabase,
+  history,
 }) => {
-  const page = +window.location.href.split('=')[1] || 1;
+  const page = +history.location.search.split('=')[1] || 1;
 
   useEffect(() => {
     fetchBooksFromDatabase(page);
@@ -54,9 +56,11 @@ const BooksList = ({
           <Pagination
             pageCount={books[books.length - 1]}
             clickHandler={fetchBooksFromDatabase}
+            history={history}
           />
         )
       }
+      <BooksForm />
     </div>
   );
 };
@@ -68,6 +72,7 @@ BooksList.propTypes = {
   fetching: PropTypes.bool.isRequired,
   error: PropTypes.string,
   removeBookFromDatabase: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 BooksList.defaultProps = {
