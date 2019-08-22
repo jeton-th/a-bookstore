@@ -17,9 +17,11 @@ const BooksList = ({
   fetchBooksFromDatabase,
   removeBookFromDatabase,
 }) => {
+  const page = window.location.href.split('=')[1] || 1;
+
   useEffect(() => {
-    fetchBooksFromDatabase();
-  }, [fetchBooksFromDatabase]);
+    fetchBooksFromDatabase(page);
+  }, [fetchBooksFromDatabase, page]);
 
   if (fetching) return <LoadingSpinner />;
 

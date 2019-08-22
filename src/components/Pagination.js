@@ -1,25 +1,19 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const Pagination = ({ pageCount, clickHandler }) => {
-  const [page, setPage] = useState(1);
-
-  const handleClick = (num) => {
-    setPage(num);
-    clickHandler(num);
-  };
+  const page = window.location.href.split('=')[1] || 1;
 
   const pages = [...Array(pageCount).keys()].map(num => (
     <Link
       key={num + 1}
-      to={`/${num + 1}`}
+      to={`/books?page=${num + 1}`}
     >
       <button
         type="button"
-        data-key={num + 1}
-        className={`page-button ${page === num + 1 ? 'selected' : ''}`}
-        onClick={() => handleClick(num + 1)}
+        className={`page-button ${+page === num + 1 && 'selected'}`}
+        onClick={() => clickHandler(num + 1)}
       >
         {num + 1}
       </button>
@@ -30,6 +24,7 @@ const Pagination = ({ pageCount, clickHandler }) => {
     <div className="page-container">
       <span>Page </span>
       <Router>
+        <Redirect exact from="/" to={`/books?page=${page}`} />
         {pages}
       </Router>
     </div>
