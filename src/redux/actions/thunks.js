@@ -28,7 +28,11 @@ export const addBookToDatabase = bookData => async (dispatch) => {
   try {
     const res = await fetchData('post', path, bookData);
     if (res.data.error) {
-      dispatch(setErrors(JSON.stringify(res.data.error)));
+      const error = JSON.stringify(res.data.error)
+        .replace(/"|\[|\]|\{|\}/g, ' ')
+        .replace(/\s:/g, ':')
+        .replace(/,/g, '-');
+      dispatch(setErrors(error));
     } else {
       const book = res.data;
       dispatch(addBook(book));
@@ -60,7 +64,11 @@ export const updateBookProgressInDatabase = (id, chapter) => (
     try {
       const res = await fetchData('put', path, { chapter });
       if (res.data.error) {
-        dispatch(setErrors(JSON.stringify(res.data.error)));
+        const error = JSON.stringify(res.data.error)
+          .replace(/"|\[|\]|\{|\}/g, ' ')
+          .replace(/\s:/g, ':')
+          .replace(/,/g, '-');
+        dispatch(setErrors(error));
       } else {
         const book = res.data;
         dispatch(updateBookProgress(id, book));
