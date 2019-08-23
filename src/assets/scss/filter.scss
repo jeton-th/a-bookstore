@@ -1,0 +1,18 @@
+.filter {
+  width: 285px;
+  height: 35px;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  background-color: #fff;
+  font-size: 16px;
+}
+
+.filter-wrap { 
+  text-align: center;
+  margin: 20px auto;
+  font-size: 16px;
+
+  span {
+    margin-right: 5px;
+  }
+}
