@@ -1,53 +1,89 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { removeBook, changeFilter } from '../redux/actions';
+import {
+  fetchBooksFromDatabase,
+  removeBookFromDatabase,
+} from '../redux/actions/thunks';
 import Book from '../components/Book';
+import BooksForm from '../components/BooksForm';
 import CategoryFilter from '../components/CategoryFilter';
+import Pagination from '../components/Pagination';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const BooksList = ({
+  fetching,
+  error,
   books,
-  removeBook,
-  changeFilter,
+  fetchBooksFromDatabase,
+  removeBookFromDatabase,
+  history,
 }) => {
-  const styles = {
-    width: '100%',
-    borderSpacing: '0 15px',
-  };
+  const page = +history.location.search.split('=')[1] || 1;
 
-  const handleRemoveBook = (id) => {
-    removeBook(id);
-  };
+  useEffect(() => {
+    fetchBooksFromDatabase(page);
+  }, [fetchBooksFromDatabase, page]);
+
+  if (fetching) return <LoadingSpinner />;
 
   return (
     <div>
-      <CategoryFilter filterHandler={changeFilter} />
-      <div style={{ margin: 'auto', maxWidth: 1200, overflowX: 'auto' }}>
-        <table style={styles} cellSpacing="0">
+      <CategoryFilter />
+      <div className="table-container">
+        <table>
           <tbody>
             {
-              books.map(book => (
-                <Book
-                  key={book.id}
-                  book={book}
-                  clickHandler={handleRemoveBook}
-                />
-              ))
+              books
+                .filter(book => typeof book === 'object')
+                .map(book => (
+                  <Book
+                    key={book.id}
+                    book={book}
+                    clickHandler={removeBookFromDatabase}
+                  />
+                ))
             }
           </tbody>
         </table>
       </div>
+      {
+        books.length > 0
+        && (
+          <Pagination
+            pageCount={books[books.length - 1]}
+            clickHandler={fetchBooksFromDatabase}
+            history={history}
+          />
+        )
+      }
+      <div className="error-div">
+        {
+          error && <p className="error">{error}</p>
+        }
+      </div>
+      <BooksForm />
     </div>
   );
 };
 
+
 BooksList.propTypes = {
   books: PropTypes.array.isRequired,
-  removeBook: PropTypes.func.isRequired,
-  changeFilter: PropTypes.func.isRequired,
+  fetchBooksFromDatabase: PropTypes.func.isRequired,
+  fetching: PropTypes.bool.isRequired,
+  error: PropTypes.string,
+  removeBookFromDatabase: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+};
+
+BooksList.defaultProps = {
+  error: null,
 };
 
 const mapStateToProps = state => ({
+  fetching: state.fetching,
+  error: state.error,
   books: state.books.filter(book => (
     state.filter === 'All' ? true : book.category === state.filter
   )),
@@ -55,5 +91,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { removeBook, changeFilter },
+  { fetchBooksFromDatabase, removeBookFromDatabase },
 )(BooksList);

@@ -1,35 +1,19 @@
-import generateId from '../../services/generateId';
-
-const INITIAL_STATE = [
-  {
-    id: generateId(),
-    title: 'The count of Montecristo',
-    author: 'Alexandre Dumas',
-    category: 'Action',
-  },
-  {
-    id: generateId(),
-    title: 'Brave New World',
-    author: 'Aldous Huxley',
-    category: 'Sci-Fi',
-  },
-  {
-    id: generateId(),
-    title: 'The Lion King',
-    author: 'Disney',
-    category: 'Kids',
-  },
-];
-
-export default (state = INITIAL_STATE, action) => {
+export default (state = [], action) => {
   switch (action.type) {
-    case 'CREATE_BOOK':
+    case 'FETCH_BOOKS':
+      return action.books;
+    case 'ADD_BOOK':
       return [
+        action.book,
         ...state,
-        { ...action.book, id: generateId() },
       ];
     case 'REMOVE_BOOK':
       return state.filter(({ id }) => id !== action.id);
+    case 'UPDATE_BOOK_PROGRESS':
+      return state.map((book) => {
+        if (book.id === action.id) return action.book;
+        return book;
+      });
     default:
       return state;
   }

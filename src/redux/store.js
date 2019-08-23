@@ -1,6 +1,18 @@
-import { createStore } from 'redux';
+import { applyMiddleware, createStore, compose } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
-const configureStore = () => createStore(rootReducer);
+const composeEnhancers = composeWithDevTools({
+  trace: true,
+  traceLimit: 25,
+});
 
-export default configureStore;
+const middleWares = process.env.NODE_ENV === 'development'
+  ? composeEnhancers(applyMiddleware(thunk))
+  : compose(applyMiddleware(thunk));
+
+export default () => createStore(
+  rootReducer,
+  middleWares,
+);
