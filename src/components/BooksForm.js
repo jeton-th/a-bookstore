@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addBookToDatabase } from '../redux/actions/thunks';
+import setErrors from '../redux/actions/setErrors';
 import BOOK_CATEGORIES from '../bookCategories';
 
-const BooksForm = ({ addBookToDatabase }) => {
+const BooksForm = ({ addBookToDatabase, setErrors }) => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [category, setCategory] = useState('Action');
@@ -29,6 +30,7 @@ const BooksForm = ({ addBookToDatabase }) => {
     setTitle('');
     setAuthor('');
     setCategory('Action');
+    setErrors(null);
   };
 
   return (
@@ -72,6 +74,7 @@ const BooksForm = ({ addBookToDatabase }) => {
 
 BooksForm.propTypes = {
   addBookToDatabase: PropTypes.func.isRequired,
+  setErrors: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addBookToDatabase })(BooksForm);
+export default connect(null, { addBookToDatabase, setErrors })(BooksForm);
