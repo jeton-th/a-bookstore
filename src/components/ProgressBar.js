@@ -14,11 +14,11 @@ const ProgressBar = ({ chapter }) => (
           a 15.9155 15.9155 0 0 1 0 -31.831"
       />
       <path
+        key={chapter}
         x="50%"
         y="50%"
         className="circle"
         strokeDasharray={`${chapter * 5}, 100`}
-        strokeDashoffset="0"
         d="M18 2.0845
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
