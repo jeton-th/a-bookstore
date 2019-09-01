@@ -19,8 +19,8 @@ export const fetchBooksFromDatabase = page => async (dispatch) => {
     return books;
   } catch (err) {
     dispatch(setErrors(err.message));
+    return err;
   }
-  return false;
 };
 
 export const addBookToDatabase = bookData => async (dispatch) => {
@@ -40,6 +40,7 @@ export const addBookToDatabase = bookData => async (dispatch) => {
     }
   } catch (err) {
     dispatch(setErrors(err.message));
+    return err;
   }
   return false;
 };
@@ -53,8 +54,8 @@ export const removeBookFromDatabase = id => async (dispatch) => {
     return res;
   } catch (err) {
     dispatch(setErrors(err.message));
+    return err;
   }
-  return false;
 };
 
 
@@ -76,6 +77,7 @@ export const updateBookProgressInDatabase = (id, chapter) => (
       }
     } catch (err) {
       dispatch(setErrors(err.message));
+      return err;
     }
     return false;
   }
