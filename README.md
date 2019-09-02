@@ -2,7 +2,7 @@
 
 ## Summary
 
-This is a content management system for a collection of books.
+This is a content management system for a collection of books whose title begins with the capital letter 'A'.  
 You can add books, delete books and update the reading progress of the books.
 You can also filter the books by category.  
 It is build using React and Redux and fetches data from this

@@ -5,7 +5,7 @@
   padding-top: 20px;
   font-family: Arial;
 }
-  
+
 header {
   max-width: 1400px;
   background-color: #fff;
@@ -14,4 +14,24 @@ header {
   padding: 29px;
   box-sizing: border-box;
   font-size: 30px;
+}
+
+header h1 {
+  font-size: 44px;
+  margin: 0;
+}
+
+header p {
+  font-size: 18px;
+  margin: 0;
+}
+
+@media screen and (max-width: 450px){
+  header h1 {
+    font-size: 30px;
+  }
+
+  header p {
+    font-size: 12px;
+  }
 }

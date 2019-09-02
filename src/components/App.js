@@ -5,7 +5,13 @@ import BooksList from '../containers/BooksList';
 
 const App = () => (
   <div className="main">
-    <header>Bookstore CMS</header>
+    <header>
+      <h1>A-bookstore CMS</h1>
+      <p>
+        <span>Your favorite books whose title begins with </span>
+        <q>A</q>
+      </p>
+    </header>
     <Router history={history}>
       <Switch>
         <Route path="/" component={BooksList} />
