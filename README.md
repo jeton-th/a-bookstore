@@ -55,8 +55,8 @@ The page will automatically open in the browser.
 * Authentication
 
 ## Contributors
-* [Jeton Thaçi](https//github.com/jeton-th)
-* [Valentino Valenti](https//github.com/1ba1)
+* [Jeton Thaçi](https://github.com/jeton-th)
+* [Valentino Valenti](https://github.com/1ba1)
 
 ## License
 This project is licensed under the MIT License.
