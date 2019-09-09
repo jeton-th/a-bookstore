@@ -38,11 +38,11 @@ export const addBookToDatabase = bookData => async (dispatch) => {
       dispatch(addBook(book));
       return book;
     }
+    return res;
   } catch (err) {
     dispatch(setErrors(err.message));
     return err;
   }
-  return false;
 };
 
 
@@ -75,10 +75,10 @@ export const updateBookProgressInDatabase = (id, chapter) => (
         dispatch(updateBookProgress(id, book));
         return book;
       }
+      return res;
     } catch (err) {
       dispatch(setErrors(err.message));
       return err;
     }
-    return false;
   }
 );
