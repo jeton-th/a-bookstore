@@ -6,9 +6,9 @@ import BooksList from '../containers/BooksList';
 const App = () => (
   <div className="main">
     <header>
-      <h1>A-bookstore CMS</h1>
+      <h1>A-bookstore</h1>
       <p>
-        <span>Your favorite books whose title begins with </span>
+        <span>Your favorite books that begin with </span>
         <q>A</q>
       </p>
     </header>
