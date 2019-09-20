@@ -1,6 +1,6 @@
 # A-bookstore
 
-![GitHub Logo](a-bookstore.png)
+![A-bookstore screenshot](a-bookstore.png)
 
 ## Summary
 
