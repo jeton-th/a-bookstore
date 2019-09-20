@@ -1,5 +1,7 @@
 # A-bookstore
 
+![GitHub Logo](a-bookstore.png)
+
 ## Summary
 
 This is a content management system for a collection of books whose title begins with the letter 'A'.  
@@ -16,9 +18,7 @@ local machine for development and testing purposes.
 ### Prerequisites  
 
 This project runs with Node.js and NPM. If you don't have those installed,
-follow this
-[guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
-
+follow this [guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).  
 After installation, run `node -v` to make sure Node.js installed correctly.
 ```
 $ node -v
