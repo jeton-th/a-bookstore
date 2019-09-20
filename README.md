@@ -10,7 +10,7 @@ You can also filter the books by category.
 It is built using React and Redux and fetches data from this
 [API](https://github.com/jeton-th/bookstore-api).
 
-You can checkout the [live version](https://a-bookstore.herokuapp.com/).
+You can check out the [live version](https://a-bookstore.herokuapp.com/).
 
 ## Getting Started
 
